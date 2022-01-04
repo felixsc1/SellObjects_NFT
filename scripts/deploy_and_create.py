@@ -1,4 +1,4 @@
-from brownie import SellObject, network, config
+from brownie import SellObject, AutiCoin, network, config
 from scripts.helpful_scripts import get_account, OPENSEA_URL
 from scripts.create_metadata import create_metadata
 
@@ -7,8 +7,10 @@ from scripts.create_metadata import create_metadata
 
 def deploy():
     account = get_account()
-    sell_object = SellObject.deploy(
-        {"from": account}, publish_source=config["networks"][network.show_active()].get("verify"))
+    auticoin = AutiCoin.deploy({"from": account})
+    sell_object = SellObject.deploy(auticoin.address,
+                                    {"from": account}, publish_source=config["networks"][network.show_active()].get("verify"))
+    return auticoin, sell_object
 
 
 def createNFT():
@@ -37,4 +39,4 @@ def main():
     deploy()
     createNFT()
     # first test the two functions above on development network, then everything on testnet
-    setMetaData('Schal', 'Recycled Kaschmir', './img/Schal.png')
+    # setMetaData('Schal', 'Recycled Kaschmir', './img/Schal.png')
