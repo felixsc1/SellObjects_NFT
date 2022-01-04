@@ -14,10 +14,13 @@ To deploy contracts on live testnets, create an .env file with the enironmental 
 
 The NFT metadata are stored on IPFS via [Pinata](https://www.pinata.cloud/). This requires to sign up for a (free) account and creating an API key.
 
-## Todo
+## Usage
 
-- Write tests for individual functions.
-- Implement functions to sell NFTs with custom tokens.
+See ./tests/test_sellObject.py for how to deploy and run the individual functions.
+
+- The owner of the contract can mint NFT tokens and set the price.
+- Anyone can pay "Auticoins" to the contract via the *payTokens()* function.
+- The owner of an NFT can then call the *sellItem()* function to transfer the NFT to another address (which must have sufficient Auticoins on the contract), and receives the sale price to his address.
   
-When deploying the contract to the rinkeby testnet, NFTs will automatically appear on the [opensea](https://opensea.io/) platform for sale.
+Sidenote: when deploying the contract to the rinkeby testnet, NFTs will automatically appear on the [opensea](https://opensea.io/) platform for sale.
 ![opensea_example](./img/opensea_example.PNG)

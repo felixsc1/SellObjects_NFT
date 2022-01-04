@@ -39,4 +39,4 @@ def main():
     deploy()
     createNFT()
     # first test the two functions above on development network, then everything on testnet
-    # setMetaData('Schal', 'Recycled Kaschmir', './img/Schal.png')
+    setMetaData('Schal', 'Recycled Kaschmir', './img/Schal.png')

@@ -49,7 +49,6 @@ def test_finalize_sale(current_price):
     # quick check if Stefan is now owner
     assert sell_object.ownerOf(tokenId) == stefan.address
     # ACT
-    # auticoin.approve(sell_object.address, current_price, {"from": stefan})
     sell_object.sellItem(lukas.address, tokenId, {"from": stefan})
     # ASSERT
     # Lukas should now own the NFT
