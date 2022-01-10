@@ -1,3 +1,14 @@
 {
-  "cSpell.words": ["auticoin"]
+  "cSpell.words": [
+    "auticoin"
+  ],
+  "spellright.language": [
+    "de",
+    "en"
+  ],
+  "spellright.documentTypes": [
+    "markdown",
+    "latex",
+    "plaintext"
+  ]
 }
