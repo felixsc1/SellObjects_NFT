@@ -1,7 +1,6 @@
-from brownie import SellObject, AutiCoin, network, config
+from brownie import SellObject, AutiCoin, network, config, Wei
 from scripts.helpful_scripts import get_account, OPENSEA_URL
 from scripts.create_metadata import create_metadata
-from web3 import Web3
 
 # This is the main scripts, the others contained functions that will be called here
 
@@ -21,7 +20,7 @@ def createNFT():
     sell_object = SellObject[-1]
     tx = sell_object.createNewToken({"from": account})
     tx.wait(1)
-    print(f"Created new Object with ID {sell_object.tokenCounter()}")
+    print(f"Created new Object with ID {sell_object.tokenCounter() - 1}")
 
 
 def setMetaData(_name, _description, _image):
@@ -37,10 +36,10 @@ def setMetaData(_name, _description, _image):
         f"You can view your item at {OPENSEA_URL.format(sell_object.address, tokenId)}")
 
 
-def set_price(current_price):
+def set_price(current_price, feePercentage):
     account = get_account()
     sell_object = SellObject[-1]
-    sell_object.setNFTPrice(current_price, {"from": account})
+    sell_object.setNFTPrice(current_price, feePercentage, {"from": account})
 
 
 def main():
@@ -48,4 +47,4 @@ def main():
     createNFT()
     # first test the two functions above on development network, then everything on testnet
     setMetaData('Schal', 'Recycled Kaschmir', './img/Schal.png')
-    set_price(current_price=Web3.toWei(85, "ether"))
+    set_price(Wei('85 ether'), 10)
